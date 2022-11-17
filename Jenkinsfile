@@ -40,7 +40,8 @@ pipeline {
         stage('Docker Build') {
             agent any
             steps {
-                sh "/usr/local/bin/docker build -t prakkash/sampleProject . "
+                sh "/usr/local/bin/docker build -t sampleProject ."
+                 sh "/usr/local/bin/docker tag sampleProject prakkash/sampleProject ."
                 
             }
         }

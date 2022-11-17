@@ -13,7 +13,7 @@ pipeline {
         stage('compile') { 
             agent any
             steps {
-               sh "mvn -version"
+               sh "/usr/local/Cellar/maven/3.8.6/libexec/mvn -version"
                sh "mvn compile"
             }
         }

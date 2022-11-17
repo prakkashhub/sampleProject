@@ -1,21 +1,6 @@
 pipeline {
     agent none
-    options {
-
-    buildDiscarder(
-        logRotator(
-            // number of build logs to keep
-            numToKeepStr:'5',
-            // history to keep in days
-            daysToKeepStr: '15',
-            // artifacts are kept for days
-            artifactDaysToKeepStr: '15',
-            // number of builds have their artifacts kept
-            artifactNumToKeepStr: '5'
-        )
-    )
-}
-
+    
     stages {
         stage('Checkout') {
            agent any
@@ -70,19 +55,9 @@ pipeline {
             }
         }
         
-        stage('Publish Docker image') {
-            agent any
-            steps{
-                script {
-                    dockerImage = docker.build "sample-project"
-                  //  docker.withRegistry('https://011756743573.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credentials') {
-                    docker.image('sample-project').push('latest')
-                 }
-                }
-            }
+        
         }
 
     }
 
   }   
-

@@ -41,7 +41,7 @@ pipeline {
             agent any
             steps {
                 sh "/usr/local/bin/docker build -t sample/samplecf ."
-                 sh "/usr/local/bin/docker tag sample/samplecf prakkash/sampleProject"
+                 sh "/usr/local/bin/docker tag sample/samplecf prakkash/sampleproject"
                 
             }
         }

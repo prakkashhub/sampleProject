@@ -14,14 +14,14 @@ pipeline {
             agent any
             steps {
                sh "/usr/local/Cellar/maven/3.8.6/libexec/mvn -version"
-               sh "mvn compile"
+               sh "/usr/local/Cellar/maven/3.8.6/libexec/mvn compile"
             }
         }
         
 		stage('Unit Tests'){
         	agent any
         	steps {
-        		sh 'mvn test'
+        		sh '/usr/local/Cellar/maven/3.8.6/libexec/mvn test'
         	}
         }
         
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonarqube') {
                         sh 'ls -la'
-                        sh 'mvn clean package sonar:sonar'
+                        sh '/usr/local/Cellar/maven/3.8.6/libexec/mvn clean package sonar:sonar'
                 }
             }
         }
@@ -49,9 +49,9 @@ pipeline {
         stage('Build Package') {
             agent any
             steps {
-                sh "mvn -U clean install -Dmaven.test.skip=true"
+                sh "/usr/local/Cellar/maven/3.8.6/libexec/mvn -U clean install -Dmaven.test.skip=true"
                 sh "ls"
-                sh "mvn -version"
+                sh "/usr/local/Cellar/maven/3.8.6/libexec/mvn -version"
             }
         }
         

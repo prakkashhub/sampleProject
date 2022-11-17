@@ -26,25 +26,7 @@ pipeline {
         }
         
         
-        stage('Sonarqube quality scan') {
-            agent any
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                        sh 'ls -la'
-                        sh '/usr/local/Cellar/maven/3.8.6/libexec/bin/mvn clean package sonar:sonar'
-                }
-            }
-        }
-
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'MINUTES') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }       
+       
 
         stage('Build Package') {
             agent any
